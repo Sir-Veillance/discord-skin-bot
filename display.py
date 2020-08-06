@@ -9,6 +9,7 @@ class Item:
 
 pickle_file = open("skins", "rb")
 skin_dictionary = pickle.load(pickle_file)
+pickle_file.close()
 
 for key in skin_dictionary:
 	for skin in skin_dictionary[key]:
