@@ -2,6 +2,7 @@ import discord
 import pickle
 import random
 import sys
+from analyzer import get_price
 
 class Item:
     def __init__(self, name, rarity, url, image_url):
@@ -30,7 +31,6 @@ async def on_message(message):
         msg = "Disconnecting from the server..."
         await message.channel.send(msg)
         sys.exit()
-
     if message.content == "-skin":
     	rarity = random.random() * 100
     	if rarity > 99.99:
@@ -43,13 +43,13 @@ async def on_message(message):
     		skin = random.choice(skin_dictionary["Classified"])
     	elif rarity > 79.9229:
     		skin = random.choice(skin_dictionary["Restricted"])
-    	elif rarity > 53.2819:
+    	elif rarity > 39.9229:
     		skin = random.choice(skin_dictionary["Mil-Spec"])
-    	elif rarity > 26.6409:
+    	elif rarity > 30:
     		skin = random.choice(skin_dictionary["Industrial"])
     	elif rarity > 0:
     		skin = random.choice(skin_dictionary["Consumer"])
-    	msg = skin.image_url + "\n>>> You receive: {}\n  {}".format(skin.name, skin.rarity)
+    	msg = skin.image_url + "\n>>> You receive: {}\n  {}".format(skin.name, skin.rarity) + "\n" + str(get_price(skin))
     	await message.channel.send(msg)
 
 
