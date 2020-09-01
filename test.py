@@ -1,6 +1,9 @@
-import random
+import pickle
 
-while(True):
-	number = random.random() * 100
-	if number > 99.7442:
-		continue
+user_balances = {}
+
+filename = "balances"
+outfile = open(filename, "wb")
+pickle.dump(user_balances, outfile)
+outfile.close()
+print("File created")
